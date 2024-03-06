@@ -1,5 +1,9 @@
 from django.urls import path
 
+from .views import SensorsAPIView, RetrieveUpdateSensorAPIView, CreateAPIView
+
+
 urlpatterns = [
-    # TODO: зарегистрируйте необходимые маршруты
+    path('sensor/', SensorsAPIView.as_view()),
+    path('sensor_update/', RetrieveUpdateSensorAPIView.as_view()),
 ]
