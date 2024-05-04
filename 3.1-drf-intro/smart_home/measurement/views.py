@@ -1,24 +1,19 @@
-from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveUpdateAPIView
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
 
-from .serializers import SensorSerializer, SensorDetailSerializer
+from .serializers import SensorDetailSerializer, MeasurementSerializer, SensorsSerializer
 from .models import Sensor, Measurement
 
 
-class SensorsAPIView(ListAPIView):
-    sensors = Sensor.objects.all()
-    ser = SensorSerializer(sensors, many=True)
-
-    def post(self, request, *args, **kwargs):
-        pass
+class SensorView(RetrieveUpdateAPIView):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorDetailSerializer
 
 
-class RetrieveUpdateSensorAPIView(RetrieveUpdateAPIView):
-    pass
+class SensorsListView(ListCreateAPIView):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorsSerializer
 
 
-class CreateAPIView(APIView):
-    def get(self, request):
-
-        return Response
+class MeasurementCreateView(CreateAPIView):
+    queryset = Measurement.objects.all()
+    serializer_class = MeasurementSerializer

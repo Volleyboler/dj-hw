@@ -2,12 +2,11 @@ from django.db import models
 
 
 class Sensor(models.Model):
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
 
 class Measurement(models.Model):
-    sensor_id = models.ForeignKey(Sensor, on_delete=models.CASCADE, related_name='scopes')
+    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     temperature = models.FloatField()
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)

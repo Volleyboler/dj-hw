@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import SensorsAPIView, RetrieveUpdateSensorAPIView, CreateAPIView
+from .views import SensorsListView, SensorView, MeasurementCreateView
 
 
 urlpatterns = [
-    path('sensor/', SensorsAPIView.as_view()),
-    path('sensor_update/', RetrieveUpdateSensorAPIView.as_view()),
+    path('sensors/', SensorsListView.as_view()),
+    path('measurements/', MeasurementCreateView.as_view()),
+    path('sensors/<pk>/', SensorView.as_view())
 ]
